@@ -1,6 +1,11 @@
 {
     "reply": {
-        "pokeReply": [],
+        "pokeReply": [
+            "[CQ:image,file=/白面鸮表情包/戳.jpg]",
+            "[CQ:image,file=/白面鸮表情包/戳1.gif]",
+            "工口发生！",
+            "发生错误！"
+        ],
         "sign":[]
     }
 }

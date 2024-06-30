@@ -4,7 +4,11 @@
 import OlivOS
 import PtilopsisOvoPlugin
 from PtilopsisOvoPlugin.sql import UserDataHandle, BlacklistHandle
-from PtilopsisOvoPlugin.interaction import poke_reply
+from PtilopsisOvoPlugin.interaction import *
+
+
+# from interaction import *
+
 
 import math
 import time
@@ -51,28 +55,27 @@ class Event(object):
 def unity_reply(plugin_event, Proc):
 
     # 签到功能
-    if plugin_event.data.message == "签到" or plugin_event.data.message.startswith(
-        "/签到"
-    ):
+    if plugin_event.data.message == "签到" or plugin_event.data.message.startswith("/签到"):
         everyday_sign(plugin_event, Proc)
         # plugin_event.reply(str(plugin_event.data.sender))
 
     # 绑定用户名
-    if plugin_event.data.message.startswith("/更改用户名"):
+    elif plugin_event.data.message.startswith("/更改用户名"):
         change_user_name(plugin_event, Proc)
 
     # 查询个人
-    if plugin_event.data.message.startswith("查询"):
+    elif plugin_event.data.message.startswith("查询"):
         select_user_data(plugin_event, Proc)
 
     #
-    if plugin_event.data.message.startswith(
-        "/help"
-    ) or plugin_event.data.message.startswith(".help"):
+    elif plugin_event.data.message.startswith("/help") or plugin_event.data.message.startswith(".help"):
         plugin_event.reply(
             "OlivaDice By lunzhiPenxil Ver.3.3.24(1074) [Python 3.11.0 For OlivOS 0.11.27]\n若需要使本机器人退群,请使用[.bot exit]\n输入[.bot on]/[.bot off]可以开关骰子功能\n(如群内有多个骰子,请在@后追加指令)\n白面鸮正在重新恢复中，具体通知以用户群信息为准\n用户群：957992799"
         )
         plugin_event.set_block()
+
+    else:
+        reply_message(plugin_event, Proc)
 
 
 sign_version = "v2.1.0"

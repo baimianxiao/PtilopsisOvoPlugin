@@ -9,6 +9,7 @@ dir = dirname(abspath(__file__))
 # 数据路径
 data_dir = join(dir, "..", "..", "data", "PtilopsisOvoPlugin")
 
+
 # 写json文件
 def write_json(data, path):
     try:
@@ -28,16 +29,16 @@ def get_json(path):
     except:
         return False
 
+config=get_json(join(data_dir,'data','config.json'))
+reply_list = config["reply"]
+custom_reply_list = reply_list["custom"]
+
 # 随机抽取
-def random_extract():
-    pass
+def random_extract(list):
+    result = random.choice(list)
+    return result
 
 # 随机回复
 def random_reply(reply_type):
-    reply_list=get_json(join(data_dir,'data','config.json'))['reply']
     reply_message = random.choice(reply_list[reply_type])
     return reply_message
-
-
-
-

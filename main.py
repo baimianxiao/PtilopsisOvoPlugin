@@ -1,7 +1,7 @@
 # -*- encoding:utf-8 -*-
 
 # Ovo插件默认
-import OlivOS
+import OlivOS # type: ignore
 import PtilopsisOvoPlugin
 from PtilopsisOvoPlugin.sql import UserDataHandle, BlacklistHandle
 from PtilopsisOvoPlugin.interaction import *

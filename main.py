@@ -6,14 +6,9 @@ import PtilopsisOvoPlugin
 from PtilopsisOvoPlugin.sql import UserDataHandle, BlacklistHandle
 from PtilopsisOvoPlugin.interaction import *
 
-
-# from interaction import *
-
-
 import math
 import time
 import random
-import json
 from os.path import abspath, dirname, join
 
 

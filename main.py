@@ -1,7 +1,7 @@
 # -*- encoding:utf-8 -*-
 
 # Ovo插件默认
-import OlivOS # type: ignore
+import OlivOS  # type: ignore
 import PtilopsisOvoPlugin
 from PtilopsisOvoPlugin.sql import UserDataHandle, BlacklistHandle
 from PtilopsisOvoPlugin.interaction import *
@@ -50,9 +50,18 @@ class Event(object):
 def unity_reply(plugin_event, Proc):
 
     # 签到功能
-    if plugin_event.data.message == "签到" or plugin_event.data.message.startswith("/签到"):
+    if plugin_event.data.message == "签到" or plugin_event.data.message.startswith(
+        "/签到"
+    ):
         everyday_sign(plugin_event, Proc)
         # plugin_event.reply(str(plugin_event.data.sender))
+
+    # 签到功能
+    elif (
+        plugin_event.data.message == "寻访十次"
+        or plugin_event.data.message == "方舟十连" 
+    ):
+        arknights_draw(plugin_event, Proc)
 
     # 绑定用户名
     elif plugin_event.data.message.startswith("/更改用户名"):
@@ -62,8 +71,10 @@ def unity_reply(plugin_event, Proc):
     elif plugin_event.data.message.startswith("查询"):
         select_user_data(plugin_event, Proc)
 
-    #
-    elif plugin_event.data.message.startswith("/help") or plugin_event.data.message.startswith(".help"):
+    # 覆盖help内容
+    elif plugin_event.data.message.startswith(
+        "/help"
+    ) or plugin_event.data.message.startswith(".help"):
         plugin_event.reply(
             "OlivaDice By lunzhiPenxil Ver.3.3.24(1074) [Python 3.11.0 For OlivOS 0.11.27]\n若需要使本机器人退群,请使用[.bot exit]\n输入[.bot on]/[.bot off]可以开关骰子功能\n(如群内有多个骰子,请在@后追加指令)\n白面鸮正在重新恢复中，具体通知以用户群信息为准\n用户群：957992799"
         )
@@ -126,6 +137,31 @@ def change_user_name(plugin_event, Proc):
         plugin_event.reply("用户名已修改为" + user_name)
     else:
         plugin_event.reply("用户名不能为空！")
+
+
+def arknights_draw(plugin_event, Proc):
+    user_id = plugin_event.data.user_id
+    sql = UserDataHandle(user_sqlite_path)
+    user_data = sql.user_data_select(user_id)
+    if user_data is None:
+        plugin_event.reply(
+            f"————————————\n▼ ERROR!\n│ 未查询到用户资料 \n┣———————————\n▲ 请使用签到指令初始化!\n————————————"
+        )
+        return True
+    user_ex = user_data[0][3]
+    user_hcy = user_data[0][5]
+    user_time = user_data[0][6]
+    level = math.floor(user_ex / 2000)
+    if user_hcy < 6000:
+        plugin_event.reply(
+            f"————————————\n▼ ERROR!\n│ 合成玉不足 \n┣———————————\n▲ 现有合成玉：{user_hcy}\n————————————"
+        )
+        return True
+    hcy = 6000
+    user_hcy = int(user_hcy) - int(hcy)
+    sql.user_data_update(user_id, user_ex, level, user_hcy, user_time)
+    plugin_event.reply(f"[CQ:image,file=http://127.0.0.1:11451]")
+    return True
 
 
 # 查询信息

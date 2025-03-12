@@ -1,0 +1,32 @@
+{
+  "name": "骰娘白面鸮额外功能插件",
+  "author": "baigugu",
+  "namespace": "PtilopsisOvoPlugin",
+  "info": "简介是什么，下次一定!",
+  "priority": 10000,
+  "svn": 1,
+  "compatible_svn": 100,
+  "message_mode": "olivos_string",
+  "support": [
+    {
+      "sdk": "onebot",
+      "platform": "qq",
+      "model": "all"
+    },
+    {
+      "sdk": "all",
+      "platform": "all",
+      "model": "all"
+    }
+  ],
+  "menu_config": [
+    {
+      "title": "插件菜单1",
+      "event": "OlivOSPluginTemplate_Menu_001"
+    },
+    {
+      "title": "插件菜单2",
+      "event": "OlivOSPluginTemplate_Menu_002"
+    }
+  ]
+}

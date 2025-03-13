@@ -5,6 +5,7 @@ import OlivOS  # type: ignore
 import PtilopsisOvoPlugin
 from PtilopsisOvoPlugin.sql import UserDataHandle, BlacklistHandle
 from PtilopsisOvoPlugin.interaction import *
+from PtilopsisOvoPlugin.ai import *
 
 import math
 import time
@@ -66,6 +67,9 @@ def unity_reply(plugin_event, Proc):
     # 绑定用户名
     elif plugin_event.data.message.startswith("/更改用户名"):
         change_user_name(plugin_event, Proc)
+
+    elif plugin_event.data.message.startswith("/chat"):
+        chat(plugin_event, Proc)
 
     # 查询个人
     elif plugin_event.data.message.startswith("查询"):
@@ -138,6 +142,24 @@ def change_user_name(plugin_event, Proc):
     else:
         plugin_event.reply("用户名不能为空！")
 
+
+# 更改用户名
+def chat(plugin_event, Proc):
+    chat_message = plugin_event.data.message.strip("/chat").strip()
+    messages[1]["content"] = chat_message
+    buffer = ""
+    sentence_endings = ['。', '！', '？', '；', '!', '?']
+    for chunk in deepseek_stream_chat(
+        api_key=api_key,
+        messages=messages,
+        temperature=1.3,  # 确保在API允许范围内
+        stream=True
+    ):
+
+        buffer += chunk  
+        if chunk.strip("/chat").strip() in sentence_endings:
+            plugin_event.reply(buffer)
+            buffer = ""
 
 
 # 明日方舟抽卡

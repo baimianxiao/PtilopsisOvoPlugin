@@ -28,10 +28,10 @@ class Event(object):
         pass
 
     def private_message(plugin_event, Proc):
-        filter(plugin_event, Proc)
+        filter(plugin_event, Proc, "private")
 
     def group_message(plugin_event, Proc):
-        filter(plugin_event, Proc)
+        filter(plugin_event, Proc, "group")
 
     def poke(plugin_event, Proc):
         poke_reply(plugin_event, Proc)
@@ -46,12 +46,13 @@ class Event(object):
             elif plugin_event.data.event == "OlivOSPluginTemplate_Menu_002":
                 pass
 
-def filter(plugin_event, Proc):
-    if plugin_event.data.group_id == '653931825':
-        if (plugin_event.data.message == "祈愿十次"
-        or plugin_event.data.message == "原神十连"):
-            genshin_draw(plugin_event, Proc)
-
+def filter(plugin_event, Proc,type):
+    if type == "group":
+        if plugin_event.data.group_id == '653931825':
+            if (plugin_event.data.message == "祈愿十次"
+            or plugin_event.data.message == "原神十连"):
+                genshin_draw(plugin_event, Proc)
+        unity_reply(plugin_event, Proc)
     unity_reply(plugin_event, Proc)
 
 def unity_reply(plugin_event, Proc):

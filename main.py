@@ -53,7 +53,8 @@ def filter(plugin_event, Proc,type):
             or plugin_event.data.message == "原神十连"):
                 genshin_draw(plugin_event, Proc)
         unity_reply(plugin_event, Proc)
-    unity_reply(plugin_event, Proc)
+    else:
+        unity_reply(plugin_event, Proc)
 
 def unity_reply(plugin_event, Proc):
     # 签到功能

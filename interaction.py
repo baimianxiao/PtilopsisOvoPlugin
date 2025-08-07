@@ -1,4 +1,4 @@
-from PtilopsisOvoPlugin.util import *
+from .util import *
 
 def poke_reply(plugin_event, Proc):
     loginInfo = plugin_event.get_login_info()

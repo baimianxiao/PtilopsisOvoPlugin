@@ -1,4 +1,12 @@
+# -*- encoding:utf-8 -*-
+
+from .util import *
+
 import sqlite3
+
+
+# 数据库路径
+user_sqlite_path = join(data_dir, "user_data.db")
 
 
 def blacklist_sqlite_init(sqlite_path):

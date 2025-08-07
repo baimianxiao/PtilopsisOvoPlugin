@@ -4,7 +4,7 @@
   "namespace": "PtilopsisOvoPlugin",
   "info": "简介是什么，下次一定!",
   "priority": 10000,
-  "svn": 1,
+  "svn": 5,
   "compatible_svn": 100,
   "message_mode": "olivos_string",
   "support": [
@@ -17,16 +17,6 @@
       "sdk": "all",
       "platform": "all",
       "model": "all"
-    }
-  ],
-  "menu_config": [
-    {
-      "title": "插件菜单1",
-      "event": "OlivOSPluginTemplate_Menu_001"
-    },
-    {
-      "title": "插件菜单2",
-      "event": "OlivOSPluginTemplate_Menu_002"
     }
   ]
 }

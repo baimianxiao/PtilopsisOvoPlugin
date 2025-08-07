@@ -1,12 +1,13 @@
 # -*- encoing:utf-8 -*-
 
 from .sql import UserDataHandle,user_sqlite_path
+from .llonebot import llonebot_api
 
 import random
 import time
 import math
 
-sign_version = "v2.1.0"
+sign_version = "v2.1.1"
 
 
 # 每日签到
@@ -38,6 +39,7 @@ def everyday_sign(plugin_event, Proc):
     sql.user_data_update(
         user_id, user_ex, level, user_hcy, time.strftime("%Y-%m-%d", time.localtime())
     )
+    llonebot_api.send_like(int(user_id),10)
     plugin_event.reply(
         f"————————————\n▼ 签到成功！\n│ Sign in successfully!\n┣———————————\n│ Dr.{user_name}\n│ 获得合成玉：{hcy_add}\n▲ 现有合成玉：{user_hcy}\n————————————"
     )

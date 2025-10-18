@@ -1,5 +1,10 @@
 # -*- encoding:utf-8 -*-
-from PtilopsisOvoPlugin.util import *
+
+
+from .util import *
+
+
+
 def deepseek_stream_request(api_key, messages, model="deepseek-chat"):
     # 确认正确的 API 端点（必须从官方文档获取）
     url = "https://api.deepseek.com/chat/completions"  # 示例地址，需替换真实地址

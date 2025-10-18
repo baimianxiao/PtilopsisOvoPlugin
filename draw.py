@@ -1,6 +1,7 @@
 # -*- encoding:utf-8 -*-
 
 from .sql import UserDataHandle,user_sqlite_path
+from .llonebot import llonebot_api
 
 import math
 import random
@@ -26,8 +27,13 @@ def arknights_draw(plugin_event, Proc):
     hcy = 6000
     user_hcy = int(user_hcy) - int(hcy)
     sql.user_data_update(user_id, user_ex, level, user_hcy, user_time)
-    id=random.randint(1, 100000)
-    plugin_event.reply(f"[CQ:image,file=http://127.0.0.1:11451/api/draw/image?game=arknights&cha={id}]")
+    image_message=[{
+        "type": "image",
+        "data": {
+            "file": f"http://127.0.0.1:11451/api/draw/image?game=arknights"
+        }
+    }]
+    llonebot_api.send_group_msg(plugin_event.data.group_id,image_message)
     return True
 
 def genshin_draw(plugin_event, Proc):
@@ -51,7 +57,12 @@ def genshin_draw(plugin_event, Proc):
     hcy = 6000
     user_hcy = int(user_hcy) - int(hcy)
     sql.user_data_update(user_id, user_ex, level, user_hcy, user_time)
-    id=random.randint(1, 100000)
-    plugin_event.reply(f"[CQ:image,file=http://127.0.0.1:11451/api/draw/image?game=genshin&cha={id}]")
+    image_message = [{
+        "type": "image",
+        "data": {
+            "file": f"http://127.0.0.1:11451/api/draw/image?game=genshin"
+        }
+    }]
+    llonebot_api.send_group_msg(plugin_event.data.group_id, image_message)
     return True
 

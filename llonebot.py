@@ -36,5 +36,19 @@ class LLoneBotApi:
         }
         return self.llonebot_post("/send_like",data)
 
+    def send_group_msg(self,group_id:int,message:list):
+        """
+
+        :param group_id: 发送的群
+        :param message:
+        :return:
+        """
+        data = {
+            "group_id":group_id,
+            "message":message
+        }
+        return self.llonebot_post("/send_group_msg", data)
+
+        
     
 llonebot_api=LLoneBotApi(onebot11_token)

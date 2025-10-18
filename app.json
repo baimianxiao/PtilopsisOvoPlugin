@@ -1,8 +1,8 @@
 {
   "name": "骰娘白面鸮额外功能插件",
-  "author": "baigugu",
+  "author": "GuGu",
   "namespace": "PtilopsisOvoPlugin",
-  "info": "简介是什么，下次一定!",
+  "info": "5.5.1beta",
   "priority": 10000,
   "svn": 5,
   "compatible_svn": 100,
